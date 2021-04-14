@@ -1,0 +1,145 @@
+name: crawler-news
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    env:
+      BASE_URL_ENDPOINTS: 'https://www.manxetes.com.br/api/cron/crawler'
+    steps:
+      - name: Crawler the intercept brasil
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/rss?url=theintercept.com/feed/?lang=pt&source=theinterceptbrasil' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler O POVO
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/content?url=opovo.com.br&childrenTag=p' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler CANALTECH
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/head?url=canaltech.com.br' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler OLHAR DIGITAL
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/head?url=olhardigital.com.br' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler UOL
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/head?url=uol.com.br' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler TILT
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/head?url=uol.com.br/tilt&source=tilt' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler globo
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/head?url=globo.com' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler folha
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/head?url=folha.com.br' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler valor
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/attr?url=valor.globo.com&attr=title' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler infomoney
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/attr?url=infomoney.com.br&attr=title' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler CNN
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/attr?url=cnnbrasil.com.br&attr=title&useBasePath=true' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler EXAME
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/attr?url=exame.com&attr=title' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler elpais
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/rss?url=feeds.elpais.com/mrss-s/pages/ep/site/brasil.elpais.com/portada&source=elpais' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler BBC
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/rss?url=feeds.bbci.co.uk/portuguese/rss.xml&source=bbc' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler estadao
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=estadao.com.br&headType=h3&attr=title' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler JOVEM NERD
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=jovemnerd.com.br&headType=h3' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler O GLOBO
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=oglobo.globo.com&headType=h1' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler ISTOE
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=istoe.com.br&headType=h1' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler TEC MUNDO
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=tecmundo.com.br&headType=h3' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler TECNOBLOG
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=tecnoblog.net&headType=h2' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler ADRENALINE-H1
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=adrenaline.com.br&headType=h1' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler ADRENALINE-H2
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=adrenaline.com.br&headType=h2' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler GIZMODO
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=gizmodo.uol.com.br&headType=h3' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler PEGN
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=revistapegn.globo.com&headType=h2&source=pegn' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler INOVACAO TECNOLOGICA - H2
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=inovacaotecnologica.com.br&headType=h2&charset=iso-8859-1&useBasePath=true' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler INOVACAO TECNOLOGICA - H3
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/headline/around?url=inovacaotecnologica.com.br&headType=h3&charset=iso-8859-1&useBasePath=true' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
+      - name: Crawler REVISTA PLANETA
+        run: |
+          curl --request GET \
+          --url '${{env.BASE_URL_ENDPOINTS}}/link/attr?url=www.revistaplaneta.com.br&attr=title&source=revistaplaneta' \
+          --header 'Authorization: Bearer ${{ secrets.NEWS_API_KEY }}'
