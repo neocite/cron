@@ -2,6 +2,9 @@ name: crawler-news
 on:
   schedule:
     - cron: '*/5 * * * *'
+  push:
+    branches:
+    - main
 jobs:
   cron:
     runs-on: ubuntu-latest
